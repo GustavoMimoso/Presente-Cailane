@@ -44,36 +44,36 @@
       opacity: 1;
     }
 
-    button {
-      font-size: 1.5rem;
+    .btn-seta {
       background: #fce4ec;
-      color: #ad1457;
       border: 1.5px solid #f8bbd0;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 2px 6px rgba(173, 20, 87, 0.25);
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(173, 20, 87, 0.25);
+      transition: background-color 0.3s, box-shadow 0.3s;
       padding: 0;
     }
-    button:hover {
+
+    .btn-seta:hover {
       background: #f8bbd0;
-      color: #880e4f;
       box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
     }
 
-    video {
-      margin-top: 2rem;
-      max-width: 90%;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    .btn-seta svg {
+      stroke: #ad1457;
+      transition: stroke 0.3s;
     }
 
+    .btn-seta:hover svg {
+      stroke: #880e4f;
+    }
+
+    /* Emoji rain */
     .emoji-rain {
       position: fixed;
       top: 0;
@@ -105,18 +105,28 @@
     <p>Muito obrigado pelos 8 meses incríveis com você, e que nosso amor dure a vida toda, até nossas mortes e além dela. ❤️</p>
   </div>
 
-  <audio autoplay loop controls>
+  <audio id="musica" autoplay loop>
     <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/ordinary.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio embutido.
   </audio>
 
   <div class="galeria">
-    <button onclick="voltarFoto()" aria-label="Foto anterior">⬅️</button>
+    <button onclick="voltarFoto()" aria-label="Foto anterior" class="btn-seta">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" >
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
     <img id="fotoAtual" src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO0002.jpeg" alt="Foto do álbum" />
-    <button onclick="proximaFoto()" aria-label="Próxima foto">➡️</button>
+
+    <button onclick="proximaFoto()" aria-label="Próxima foto" class="btn-seta">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
   </div>
 
-  <video controls width="640" height="360" muted>
+  <video controls width="640" height="360" style="margin-top:2rem; border-radius:12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
     <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/video.mp4" type="video/mp4" />
     Seu navegador não suporta vídeo.
   </video>
@@ -124,6 +134,7 @@
   <div class="emoji-rain" id="emojiRain"></div>
 
   <script>
+    // Emoji rain
     const emojis = ["💖", "💍", "💕", "🥰", "🌹"];
     function soltarEmojis() {
       const emoji = document.createElement("div");
@@ -136,6 +147,7 @@
     }
     setInterval(soltarEmojis, 300);
 
+    // Fotos
     const fotos = [
       "FOTO0002.jpeg", "FOTO002.jpeg", "FOTO02.jpeg", "FOTO2.jpeg", "FOTO003.jpeg", "FOTO3.jpeg",
       "FOTO004.jpeg", "FOTO04.jpeg", "FOTO4.jpeg", "FOTO6.jpeg", "FOTO7.jpeg", "FOTO8.jpeg",
@@ -143,13 +155,11 @@
       "FOTO15.jpeg", "FOTO16.jpeg", "FOTO17.jpeg", "FOTO18.jpeg", "FOTO19.jpeg", "FOTO20.jpeg",
       "FOTO21.jpeg", "FOTO22.jpeg"
     ];
-
     const baseURL = "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/";
     let index = 0;
     const img = document.getElementById("fotoAtual");
 
     function mostrarFoto(i) {
-      // anima fade out
       img.style.opacity = 0;
       setTimeout(() => {
         img.src = baseURL + fotos[i];
@@ -167,8 +177,16 @@
       mostrarFoto(index);
     }
 
-    // troca automática a cada 3 segundos
+    // Troca automática a cada 3 segundos
     setInterval(proximaFoto, 3000);
+
+    // Para garantir autoplay do áudio
+    const musica = document.getElementById('musica');
+    musica.volume = 0.3; // volume suave
+    musica.play().catch(() => {
+      // Caso o autoplay seja bloqueado, avisa o usuário ou permite tocar manualmente
+      console.log("Clique para ativar o som.");
+    });
   </script>
 </body>
 </html>
