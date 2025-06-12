@@ -89,16 +89,11 @@
       transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
       padding: 0;
       user-select: none;
-      font-size: 1.6rem;
-      line-height: 1;
-      color: #ad1457;
-      user-select: none;
     }
     .btn-seta:hover {
       background: #f8bbd0;
       box-shadow: 0 6px 14px rgba(136, 14, 79, 0.4);
       transform: scale(1.1);
-      color: #880e4f;
     }
     .btn-seta svg {
       stroke: #ad1457;
@@ -108,6 +103,28 @@
     }
     .btn-seta:hover svg {
       stroke: #880e4f;
+    }
+
+    /* Botão de música kawaii */
+    #btnMusica {
+      margin: 1rem auto;
+      width: 70px;
+      height: 70px;
+      padding: 0;
+      background: #fce4ec;
+      border: 1.8px solid #f8bbd0;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(173, 20, 87, 0.25);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    #btnMusica:hover {
+      box-shadow: 0 6px 14px rgba(136, 14, 79, 0.4);
+      transform: scale(1.1);
     }
 
     /* Legenda foto */
@@ -201,11 +218,14 @@
       .btn-seta {
         width: 40px;
         height: 40px;
-        font-size: 1.2rem;
       }
       .btn-seta svg {
         width: 20px;
         height: 20px;
+      }
+      #btnMusica {
+        width: 55px;
+        height: 55px;
       }
     }
   </style>
@@ -224,23 +244,43 @@
     Seu navegador não suporta áudio embutido.
   </audio>
 
-  <!-- Botão para tocar/pausar a música -->
-  <button id="btnMusica" aria-label="Tocar música" class="btn-seta" type="button" style="margin: 1rem auto;">
-    ▶️
+  <!-- Botão de música kawaii -->
+  <button id="btnMusica" aria-label="Tocar música" type="button" title="Tocar música">
+    <svg id="iconeMusica" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" fill="#c2185b" stroke="#ad1457" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false">
+      <!-- Cabeça do gatinho -->
+      <circle cx="32" cy="32" r="28" fill="#ffe6f0" stroke="#c2185b" stroke-width="3"/>
+      <!-- Orelhas -->
+      <polygon points="12,16 20,4 28,16" fill="#ffc7dd" stroke="#c2185b" stroke-width="2"/>
+      <polygon points="52,16 44,4 36,16" fill="#ffc7dd" stroke="#c2185b" stroke-width="2"/>
+      <!-- Olhos (play icon por padrão) -->
+      <polygon id="playIcon" points="26,20 26,44 44,32" fill="#c2185b"/>
+      <!-- Pausa icon escondido inicialmente -->
+      <g id="pauseIcon" style="display:none;" fill="#c2185b">
+        <rect x="24" y="20" width="6" height="24" rx="1"/>
+        <rect x="38" y="20" width="6" height="24" rx="1"/>
+      </g>
+      <!-- Nariz -->
+      <path d="M32 38 Q30 40 32 42 Q34 40 32 38Z" fill="#ad1457" />
+      <!-- Bigodes -->
+      <path d="M14 36 H24" stroke="#ad1457" stroke-width="2" />
+      <path d="M40 36 H50" stroke="#ad1457" stroke-width="2" />
+      <!-- Boca -->
+      <path d="M28 44 Q32 48 36 44" stroke="#ad1457" stroke-width="2" fill="none" />
+    </svg>
   </button>
 
-  <div class="galeria" aria-label="Galeria de fotos">
-    <button onclick="voltarFoto()" aria-label="Foto anterior" class="btn-seta" type="button">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-        <polyline points="15 18 9 12 15 6"></polyline>
+  <div class="galeria">
+    <button id="btnAnterior" class="btn-seta" aria-label="Foto anterior" type="button" title="Foto anterior">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
       </svg>
     </button>
 
-    <img id="fotoAtual" src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO0002.jpeg" alt="Foto do álbum" />
+    <img id="fotoAtual" src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/img1.jpeg" alt="Foto 1 do casal" tabindex="0" />
 
-    <button onclick="proximaFoto()" aria-label="Próxima foto" class="btn-seta" type="button">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-        <polyline points="9 18 15 12 9 6"></polyline>
+    <button id="btnProximo" class="btn-seta" aria-label="Foto próxima" type="button" title="Foto próxima">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
       </svg>
     </button>
   </div>
