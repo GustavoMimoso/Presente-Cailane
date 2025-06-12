@@ -303,80 +303,80 @@
       { nome: "FOTO22.jpeg", legenda: "Nosso amor infinito.💖💖💖💖💖" }
     ];
 
+      // Ajustar URLs para fotos completas e miniaturas (você pode alterar se quiser)
     const baseURL = "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/";
-    let index = 0;
-    const img = document.getElementById("fotoAtual");
-    const legenda = document.getElementById("legendaFoto");
-    const miniaturasContainer = document.querySelector(".miniaturas");
+
+    let fotoAtualIndex = 1;
+
+    const imgPrincipal = document.getElementById("fotoAtual");
+    const legendaFoto = document.getElementById("legendaFoto");
+    const containerMiniaturas = document.querySelector(".miniaturas");
 
     // Criar miniaturas
-    function criarMiniaturas() {
-      fotos.forEach((foto, i) => {
-        const mini = document.createElement("img");
-        mini.src = baseURL + foto.nome;
-        mini.alt = "Miniatura: " + foto.legenda;
-        mini.className = "miniatura";
-        mini.setAttribute("role", "listitem");
-        mini.addEventListener("click", () => {
-          index = i;
-          mostrarFoto(index);
-          resetInterval();
-        });
-        miniaturasContainer.appendChild(mini);
+    fotos.forEach((foto, i) => {
+      const mini = document.createElement("img");
+      mini.src = baseURL + foto.nome;
+      mini.alt = foto.legenda;
+      mini.className = "miniatura";
+      mini.setAttribute("role", "listitem");
+      mini.addEventListener("click", () => {
+        mostrarFoto(i);
       });
-      marcarMiniatura(index);
-    }
+      containerMiniaturas.appendChild(mini);
+    });
 
-    function marcarMiniatura(i) {
-      const miniaturas = document.querySelectorAll(".miniatura");
-      miniaturas.forEach((mini, idx) => {
-        if(idx === i) {
-          mini.classList.add("selecionada");
-        } else {
-          mini.classList.remove("selecionada");
-        }
+    function atualizarMiniaturas() {
+      const minis = containerMiniaturas.querySelectorAll(".miniatura");
+      minis.forEach((mini, i) => {
+        mini.classList.toggle("selecionada", i === fotoAtualIndex);
       });
     }
 
-    function mostrarFoto(i) {
-      img.style.opacity = 0;
-      img.style.transform = "scale(0.95)";
+    function mostrarFoto(index) {
+      if (index < 0) index = fotos.length - 1;
+      if (index >= fotos.length) index = 0;
+      fotoAtualIndex = index;
+
+      // efeito de transição
+      imgPrincipal.style.opacity = "0";
       setTimeout(() => {
-        img.src = baseURL + fotos[i].nome;
-        legenda.textContent = fotos[i].legenda;
-        img.style.opacity = 1;
-        img.style.transform = "scale(1)";
-        marcarMiniatura(i);
-      }, 500);
+        imgPrincipal.src = baseURL + fotos[fotoAtualIndex].nome;
+        imgPrincipal.alt = fotos[fotoAtualIndex].legenda;
+        legendaFoto.textContent = fotos[fotoAtualIndex].legenda;
+        imgPrincipal.style.opacity = "1";
+        atualizarMiniaturas();
+      }, 400);
     }
 
     function proximaFoto() {
-      index = (index + 1) % fotos.length;
-      mostrarFoto(index);
+      mostrarFoto(fotoAtualIndex + 1);
     }
 
     function voltarFoto() {
-      index = (index - 1 + fotos.length) % fotos.length;
-      mostrarFoto(index);
+      mostrarFoto(fotoAtualIndex - 1);
     }
 
-    let slideInterval = setInterval(proximaFoto, 3000);
+    // Inicializa a galeria
+    mostrarFoto(fotoAtualIndex);
 
-    // Reinicia o timer ao clicar nas setas ou miniaturas
-    function resetInterval() {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(proximaFoto, 3000);
-    }
-
-    // Inicializar
-    criarMiniaturas();
-    mostrarFoto(index);
-
-    // Áudio autoplay
+    // Controle do áudio
+    const btnMusica = document.getElementById('btnMusica');
     const musica = document.getElementById('musica');
-    musica.volume = 0.3; // volume suave
-    musica.play().catch(() => {
-      console.log("Clique para ativar o som.");
+
+    musica.pause();
+    btnMusica.textContent = '▶️';
+    btnMusica.setAttribute('aria-label', 'Tocar música');
+
+    btnMusica.addEventListener('click', () => {
+      if (musica.paused) {
+        musica.play();
+        btnMusica.textContent = '⏸️';
+        btnMusica.setAttribute('aria-label', 'Pausar música');
+      } else {
+        musica.pause();
+        btnMusica.textContent = '▶️';
+        btnMusica.setAttribute('aria-label', 'Tocar música');
+      }
     });
   </script>
 </body>
