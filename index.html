@@ -4,303 +4,237 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Para Cailane 💖</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom, #ffe0e9, #ffffff);
+      font-family: 'Quicksand', Arial, sans-serif;
+      background: linear-gradient(to bottom, #fff6fa 0%, #ffe0e9 100%);
       margin: 0;
-      padding: 1rem;
-      color: #333;
+      padding: 1.5rem;
+      color: #a31255;
       text-align: center;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      position: relative;
     }
     header {
-      padding: 2rem 1rem 1rem;
       font-family: 'Pacifico', cursive;
-      font-size: 2.4rem;
-      color: #c2185b;
+      font-size: 2.6rem;
+      color: #e75480;
+      margin-bottom: 1.2rem;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
       user-select: none;
-      text-shadow: 1px 1px 3px rgba(194, 24, 91, 0.6);
+    }
+    .kitty-bow {
+      width: 48px;
+      height: 48px;
+      vertical-align: middle;
     }
     .mensagem {
-      max-width: 700px;
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      color: #4a4a4a;
       background: #fff0f6;
-      padding: 1.5rem 2rem;
-      border-radius: 16px;
-      box-shadow: 0 6px 12px rgba(194, 24, 91, 0.15);
-      user-select: text;
+      border-radius: 20px;
+      box-shadow: 0 6px 12px rgba(231, 84, 128, 0.10);
+      padding: 1.6rem 2.2rem;
+      margin-bottom: 1.6rem;
+      max-width: 600px;
+      font-size: 1.15rem;
+      color: #ad1457;
+      line-height: 1.7;
+      border: 2px dashed #ffc7dd;
+      position: relative;
     }
-
-    /* GALERIA */
-
+    .mensagem::before {
+      content: '♡';
+      position: absolute;
+      top: -18px; left: 20px;
+      font-size: 1.7rem;
+      color: #e75480;
+    }
     .galeria {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      flex-wrap: nowrap;
-      position: relative;
+      gap: 18px;
+      margin: 1rem 0;
     }
-
     #fotoAtual {
-      max-width: 360px;
-      max-height: 480px;
-      border-radius: 20px;
-      box-shadow:
-        0 10px 15px rgba(194, 24, 91, 0.15),
-        0 4px 6px rgba(0, 0, 0, 0.12);
-      transition: opacity 0.7s ease-in-out, transform 0.4s ease;
-      opacity: 1;
-      cursor: pointer;
+      max-width: 320px;
+      max-height: 440px;
+      border-radius: 18px;
+      box-shadow: 0 4px 14px rgba(231, 84, 128, 0.12);
       background: #fff;
-      object-fit: cover;
-      user-select: none;
-      transform-origin: center;
+      border: 3px solid #ffc7dd;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     #fotoAtual:hover {
-      transform: scale(1.05);
-      box-shadow:
-        0 15px 25px rgba(194, 24, 91, 0.3),
-        0 6px 10px rgba(0, 0, 0, 0.2);
+      transform: scale(1.03) rotate(-2deg);
+      box-shadow: 0 8px 22px rgba(231, 84, 128, 0.22);
     }
-
     .btn-seta {
-      background: #fce4ec;
-      border: 1.8px solid #f8bbd0;
+      background: #fff6fa;
+      border: 2px solid #ffc7dd;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 42px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(173, 20, 87, 0.25);
-      transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
-      padding: 0;
-      user-select: none;
+      transition: background 0.2s, transform 0.2s;
     }
     .btn-seta:hover {
-      background: #f8bbd0;
-      box-shadow: 0 6px 14px rgba(136, 14, 79, 0.4);
-      transform: scale(1.1);
+      background: #ffe0e9;
+      transform: scale(1.08);
     }
     .btn-seta svg {
-      stroke: #ad1457;
-      transition: stroke 0.3s;
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
+      stroke: #e75480;
     }
-    .btn-seta:hover svg {
-      stroke: #880e4f;
+    #legendaFoto {
+      margin-top: 0.6rem;
+      font-weight: 600;
+      color: #e75480;
+      font-size: 1.05rem;
+      min-height: 1.2rem;
     }
-
-    /* Botão de música kawaii */
-    #btnMusica {
-      margin: 1rem auto;
-      width: 70px;
-      height: 70px;
-      padding: 0;
-      background: #fce4ec;
-      border: 1.8px solid #f8bbd0;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(173, 20, 87, 0.25);
+    .miniaturas {
+      display: flex;
+      gap: 8px;
+      margin: 1rem 0 0.5rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 340px;
+    }
+    .miniatura {
+      width: 44px;
+      height: 60px;
+      border-radius: 10px;
+      border: 2px solid #ffe0e9;
+      box-shadow: 0 2px 6px rgba(231, 84, 128, 0.10);
+      opacity: 0.7;
       cursor: pointer;
+      transition: border 0.2s, opacity 0.2s, transform 0.2s;
+      object-fit: cover;
+    }
+    .miniatura.selecionada {
+      border: 2.5px solid #e75480;
+      opacity: 1;
+      transform: scale(1.08);
+    }
+    /* Botão de música Hello Kitty */
+    #btnMusica {
+      margin: 1.2rem auto 1rem auto;
+      width: 62px;
+      height: 62px;
+      background: #fff6fa;
+      border: 2px solid #ffc7dd;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(231, 84, 128, 0.13);
       display: flex;
       align-items: center;
       justify-content: center;
-      user-select: none;
-      transition: box-shadow 0.3s, transform 0.2s;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
     }
     #btnMusica:hover {
-      box-shadow: 0 6px 14px rgba(136, 14, 79, 0.4);
-      transform: scale(1.1);
+      background: #ffe0e9;
+      transform: scale(1.05);
     }
-
-    /* Legenda foto */
-    #legendaFoto {
-      margin-top: 0.7rem;
-      font-weight: 600;
-      color: #a31255;
-      font-size: 1rem;
-      min-height: 1.3rem;
-      user-select: none;
-    }
-
-    /* Miniaturas */
-    .miniaturas {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-      max-width: 400px;
-    }
-    .miniatura {
-      width: 60px;
-      height: 80px;
-      border-radius: 12px;
-      box-shadow: 0 3px 6px rgba(194, 24, 91, 0.15);
-      cursor: pointer;
-      opacity: 0.7;
-      transition: opacity 0.3s, box-shadow 0.3s, transform 0.3s;
-      object-fit: cover;
-      border: 2.5px solid transparent;
-    }
-    .miniatura:hover {
-      opacity: 1;
-      box-shadow: 0 6px 12px rgba(194, 24, 91, 0.3);
-      transform: scale(1.1);
-    }
-    .miniatura.selecionada {
-      border-color: #c2185b;
-      opacity: 1;
-      transform: scale(1.15);
-      box-shadow: 0 8px 16px rgba(194, 24, 91, 0.5);
-    }
-
-    /* Vídeo estilizado */
-    video {
-      margin-top: 2rem;
-      max-width: 90%;
-      border-radius: 20px;
-      box-shadow:
-        0 15px 25px rgba(194, 24, 91, 0.25),
-        0 6px 10px rgba(0, 0, 0, 0.2);
-      user-select: none;
-      outline: none;
-      border: 4px solid #f8bbd0;
-      background: #fff0f6;
-    }
-
     /* Emoji rain */
     .emoji-rain {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
       z-index: 9999;
     }
     .emoji {
       position: absolute;
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       animation: fall linear infinite;
     }
     @keyframes fall {
-      to {
-        transform: translateY(100vh);
-        opacity: 0;
-      }
+      to { transform: translateY(100vh); opacity: 0; }
     }
-
     /* Responsivo */
     @media (max-width: 480px) {
-      #fotoAtual {
-        max-width: 90vw;
-        max-height: 60vh;
-      }
-      .miniatura {
-        width: 45px;
-        height: 60px;
-      }
-      .btn-seta {
-        width: 40px;
-        height: 40px;
-      }
-      .btn-seta svg {
-        width: 20px;
-        height: 20px;
-      }
-      #btnMusica {
-        width: 55px;
-        height: 55px;
-      }
+      #fotoAtual { max-width: 90vw; max-height: 60vh; }
+      .miniatura { width: 34px; height: 44px; }
+      .btn-seta { width: 32px; height: 32px; }
+      #btnMusica { width: 44px; height: 44px; }
     }
   </style>
 </head>
 <body>
-  <header>Para Cailane de Faria 💍</header>
-
+  <header>
+    <svg class="kitty-bow" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="16" cy="16" rx="16" ry="10" fill="#ffb6d5"/>
+      <ellipse cx="48" cy="16" rx="16" ry="10" fill="#ffb6d5"/>
+      <circle cx="32" cy="16" r="8" fill="#e75480" stroke="#ad1457" stroke-width="2"/>
+    </svg>
+    Para Cailane de Faria
+    <svg class="kitty-bow" viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="16" cy="16" rx="16" ry="10" fill="#ffb6d5"/>
+      <ellipse cx="48" cy="16" rx="16" ry="10" fill="#ffb6d5"/>
+      <circle cx="32" cy="16" r="8" fill="#e75480" stroke="#ad1457" stroke-width="2"/>
+    </svg>
+  </header>
   <div class="mensagem">
-    <p>Não sou muito bom com palavras e eu sei disso, mas gosto de dizer que nesse 8 meses de namoro, nesse nosso primeiro Dia dos Namorados, ao ver tantas memórias vejo que estou com alguém que amo, que quero compartilhar minha vida. Eu te amo muito, Cailane, você é tudo pra mim hoje. Você se tornou a pessoa mais importante da minha vida.</p>
-    <p>Que essas fotos te façam lembrar sempre dos nossos momentos como namorados. Mas agora estamos em uma nova etapa: <strong>noivos!!!</strong> Mal posso esperar pelo dia que você olhar para mim e me aceitar como marido na sua vida.</p>
-    <p>Muito obrigado pelos 8 meses incríveis com você, e que nosso amor dure a vida toda, até nossas mortes e além dela. ❤️</p>
+    <p>Oito meses de amor, carinho e memórias fofas. Você é minha melhor companhia, meu laço favorito. Que cada foto seja um lembrete do quanto te amo, minha Hello Kitty! 💖</p>
+    <p>Agora, noivos, seguimos juntos para sempre. Obrigado por ser minha pessoa especial. Te amo infinito! 🎀</p>
   </div>
-
   <audio id="musica" loop>
     <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/ordinary.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio embutido.
   </audio>
-
-  <!-- Botão de música kawaii -->
   <button id="btnMusica" aria-label="Tocar música" type="button" title="Tocar música">
-    <svg id="iconeMusica" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" fill="#c2185b" stroke="#ad1457" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" focusable="false">
-      <!-- Cabeça do gatinho -->
-      <circle cx="32" cy="32" r="28" fill="#ffe6f0" stroke="#c2185b" stroke-width="3"/>
-      <!-- Orelhas -->
-      <polygon points="12,16 20,4 28,16" fill="#ffc7dd" stroke="#c2185b" stroke-width="2"/>
-      <polygon points="52,16 44,4 36,16" fill="#ffc7dd" stroke="#c2185b" stroke-width="2"/>
-      <!-- Olhos (play icon por padrão) -->
-      <polygon id="playIcon" points="26,20 26,44 44,32" fill="#c2185b"/>
-      <!-- Pausa icon escondido inicialmente -->
-      <g id="pauseIcon" style="display:none;" fill="#c2185b">
-        <rect x="24" y="20" width="6" height="24" rx="1"/>
-        <rect x="38" y="20" width="6" height="24" rx="1"/>
-      </g>
-      <!-- Nariz -->
-      <path d="M32 38 Q30 40 32 42 Q34 40 32 38Z" fill="#ad1457" />
-      <!-- Bigodes -->
-      <path d="M14 36 H24" stroke="#ad1457" stroke-width="2" />
-      <path d="M40 36 H50" stroke="#ad1457" stroke-width="2" />
-      <!-- Boca -->
-      <path d="M28 44 Q32 48 36 44" stroke="#ad1457" stroke-width="2" fill="none" />
+    <!-- SVG de gatinho Hello Kitty minimalista -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="38" height="38">
+      <ellipse cx="32" cy="36" rx="22" ry="18" fill="#fff" stroke="#e75480" stroke-width="2"/>
+      <ellipse cx="18" cy="20" rx="6" ry="8" fill="#fff" stroke="#e75480" stroke-width="2"/>
+      <ellipse cx="46" cy="20" rx="6" ry="8" fill="#fff" stroke="#e75480" stroke-width="2"/>
+      <ellipse cx="32" cy="44" rx="4" ry="2" fill="#e75480"/>
+      <circle cx="26" cy="36" r="2" fill="#ad1457"/>
+      <circle cx="38" cy="36" r="2" fill="#ad1457"/>
+      <ellipse cx="32" cy="40" rx="1.5" ry="1" fill="#ad1457"/>
+      <ellipse cx="24" cy="16" rx="2" ry="1" fill="#ffb6d5"/>
+      <ellipse cx="40" cy="16" rx="2" ry="1" fill="#ffb6d5"/>
+      <!-- Laço -->
+      <ellipse cx="32" cy="12" rx="3" ry="2" fill="#e75480"/>
+      <ellipse cx="29" cy="12" rx="2" ry="1.2" fill="#ffb6d5"/>
+      <ellipse cx="35" cy="12" rx="2" ry="1.2" fill="#ffb6d5"/>
     </svg>
   </button>
-
   <div class="galeria">
     <button id="btnAnterior" class="btn-seta" aria-label="Foto anterior" type="button" title="Foto anterior">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
       </svg>
     </button>
-
     <img id="fotoAtual" src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/img1.jpeg" alt="Foto 1 do casal" tabindex="0" />
-
     <button id="btnProximo" class="btn-seta" aria-label="Foto próxima" type="button" title="Foto próxima">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true" focusable="false">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
       </svg>
     </button>
   </div>
-
   <div id="legendaFoto" aria-live="polite" aria-atomic="true"></div>
-
-  <div class="miniaturas" role="list" aria-label="Miniaturas de fotos">
-    <!-- Miniaturas serão criadas pelo JS -->
-  </div>
-
-  <video controls width="640" height="360" aria-label="Vídeo de recordação">
+  <div class="miniaturas" role="list" aria-label="Miniaturas de fotos"></div>
+  <video controls width="340" height="200" aria-label="Vídeo de recordação" style="margin-top:1.3rem; border-radius:16px; border:2px solid #ffc7dd; background:#fff0f6;">
     <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/video.mp4" type="video/mp4" />
     Seu navegador não suporta vídeo.
   </video>
-
   <div class="emoji-rain" id="emojiRain"></div>
-
   <script>
     // Emoji rain
-    const emojis = ["💖", "💍", "💕", "🥰", "🌹"];
+    const emojis = ["💖", "🎀", "🌸", "😽", "💕"];
     function soltarEmojis() {
       const emoji = document.createElement("div");
       emoji.className = "emoji";
@@ -310,9 +244,9 @@
       document.getElementById("emojiRain").appendChild(emoji);
       setTimeout(() => emoji.remove(), 5000);
     }
-    setInterval(soltarEmojis, 300);
+    setInterval(soltarEmojis, 320);
 
-    // Fotos e legendas
+    // Galeria de fotos e miniaturas (igual ao seu código base)
     const fotos = [
       { nome: "FOTO1.jpeg", legenda: "O olhar que sempre me acompanha" },
       { nome: "FOTO0002.jpeg", legenda: "Nosso primeiro passeio juntos de nosso amigos" },
@@ -321,11 +255,11 @@
       { nome: "FOTO2.jpeg", legenda: "Você toda linda" },
       { nome: "FOTO003.jpeg", legenda: "Primeiro mimo semanal" },
       { nome: "FOTO3.jpeg", legenda: "Segundo encontro vosso" },
-      { nome: "FOTO004.jpeg", legenda: "Nosso primeiro filme do studio ghibili " },
+      { nome: "FOTO004.jpeg", legenda: "Nosso primeiro filme do studio ghibili" },
       { nome: "FOTO04.jpeg", legenda: "No cinema" },
       { nome: "FOTO4.jpeg", legenda: "Nosso primeiro natal" },
       { nome: "FOTO6.jpeg", legenda: "Primeira cachoeira juntos" },
-      { nome: "FOTO7.jpeg", legenda: "Quando saimos com minha mae" },
+      { nome: "FOTO7.jpeg", legenda: "Quando saimos com minha mãe" },
       { nome: "FOTO8.jpeg", legenda: "Agora vou ditar algumas palavras para você" },
       { nome: "FOTO9.jpeg", legenda: "Nesses 8 meses" },
       { nome: "FOTO10.jpeg", legenda: "Em que estivemos juntos" },
@@ -338,46 +272,32 @@
       { nome: "FOTO17.jpeg", legenda: "Nossos sonhos" },
       { nome: "FOTO18.jpeg", legenda: "Que farei questão de realizar." },
       { nome: "FOTO19.jpeg", legenda: "Nosso amor cresce a cada dia" },
-      { nome: "FOTO20.jpeg", legenda: "Ele sera eterno caso dependa de mim." },
+      { nome: "FOTO20.jpeg", legenda: "Ele será eterno caso dependa de mim." },
       { nome: "FOTO21.jpeg", legenda: "Para sempre nós" },
       { nome: "FOTO22.jpeg", legenda: "Nosso amor infinito.💖💖💖💖💖" }
     ];
-
-      // Ajustar URLs para fotos completas e miniaturas (você pode alterar se quiser)
     const baseURL = "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/";
-
     let fotoAtualIndex = 1;
-
     const imgPrincipal = document.getElementById("fotoAtual");
     const legendaFoto = document.getElementById("legendaFoto");
     const containerMiniaturas = document.querySelector(".miniaturas");
-
-    // Criar miniaturas
     fotos.forEach((foto, i) => {
       const mini = document.createElement("img");
       mini.src = baseURL + foto.nome;
       mini.alt = foto.legenda;
       mini.className = "miniatura";
       mini.setAttribute("role", "listitem");
-      mini.addEventListener("click", () => {
-        mostrarFoto(i);
-      });
+      mini.addEventListener("click", () => mostrarFoto(i));
       containerMiniaturas.appendChild(mini);
     });
-
     function atualizarMiniaturas() {
       const minis = containerMiniaturas.querySelectorAll(".miniatura");
-      minis.forEach((mini, i) => {
-        mini.classList.toggle("selecionada", i === fotoAtualIndex);
-      });
+      minis.forEach((mini, i) => mini.classList.toggle("selecionada", i === fotoAtualIndex));
     }
-
     function mostrarFoto(index) {
       if (index < 0) index = fotos.length - 1;
       if (index >= fotos.length) index = 0;
       fotoAtualIndex = index;
-
-      // efeito de transição
       imgPrincipal.style.opacity = "0";
       setTimeout(() => {
         imgPrincipal.src = baseURL + fotos[fotoAtualIndex].nome;
@@ -385,37 +305,27 @@
         legendaFoto.textContent = fotos[fotoAtualIndex].legenda;
         imgPrincipal.style.opacity = "1";
         atualizarMiniaturas();
-      }, 400);
+      }, 350);
     }
-
-    function proximaFoto() {
-      mostrarFoto(fotoAtualIndex + 1);
-    }
-
-    function voltarFoto() {
-      mostrarFoto(fotoAtualIndex - 1);
-    }
-
-    // Inicializa a galeria
+    function proximaFoto() { mostrarFoto(fotoAtualIndex + 1); }
+    function voltarFoto() { mostrarFoto(fotoAtualIndex - 1); }
+    document.getElementById("btnAnterior").onclick = voltarFoto;
+    document.getElementById("btnProximo").onclick = proximaFoto;
     mostrarFoto(fotoAtualIndex);
 
-    // Controle do áudio
+    // Botão de música (play/pause)
     const btnMusica = document.getElementById('btnMusica');
     const musica = document.getElementById('musica');
-
-    musica.pause();
-    btnMusica.textContent = '▶️';
-    btnMusica.setAttribute('aria-label', 'Tocar música');
-
+    let tocando = false;
     btnMusica.addEventListener('click', () => {
       if (musica.paused) {
         musica.play();
-        btnMusica.textContent = '⏸️';
-        btnMusica.setAttribute('aria-label', 'Pausar música');
+        tocando = true;
+        btnMusica.style.background = '#ffe0e9';
       } else {
         musica.pause();
-        btnMusica.textContent = '▶️';
-        btnMusica.setAttribute('aria-label', 'Tocar música');
+        tocando = false;
+        btnMusica.style.background = '#fff6fa';
       }
     });
   </script>
