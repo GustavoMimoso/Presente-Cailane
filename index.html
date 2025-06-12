@@ -14,6 +14,7 @@
       padding: 0;
       color: #333;
       text-align: center;
+      overflow-x: hidden;
     }
     header {
       padding: 2rem;
@@ -26,24 +27,45 @@
       max-width: 700px;
       font-size: 1.2rem;
       line-height: 1.6;
+      padding: 0 1rem;
     }
 
+    /* Galeria principal */
     .galeria {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
       margin-top: 2rem;
+      flex-wrap: nowrap;
     }
 
     #fotoAtual {
       max-width: 320px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: opacity 0.8s ease-in-out;
+      transition: opacity 0.6s ease, transform 0.6s ease;
       opacity: 1;
+      user-select: none;
+      transform-origin: center center;
     }
 
+    #fotoAtual.escondido {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    /* Legenda */
+    #legendaFoto {
+      margin-top: 0.5rem;
+      font-style: italic;
+      color: #ad1457;
+      font-size: 1rem;
+      min-height: 1.4em;
+      user-select: none;
+    }
+
+    /* Botões setas */
     .btn-seta {
       background: #fce4ec;
       border: 1.5px solid #f8bbd0;
@@ -54,23 +76,61 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(173, 20, 87, 0.25);
-      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 1.5px 4px rgba(173, 20, 87, 0.2);
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.15s;
       padding: 0;
+      flex-shrink: 0;
     }
 
-    .btn-seta:hover {
+    .btn-seta:hover, .btn-seta:focus {
       background: #f8bbd0;
-      box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+      box-shadow: 0 3px 8px rgba(136, 14, 79, 0.3);
+      transform: scale(1.1);
+      outline: none;
     }
 
     .btn-seta svg {
       stroke: #ad1457;
       transition: stroke 0.3s;
+      user-select: none;
     }
 
-    .btn-seta:hover svg {
+    .btn-seta:hover svg, .btn-seta:focus svg {
       stroke: #880e4f;
+    }
+
+    /* Miniaturas */
+    .miniaturas {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 90vw;
+      user-select: none;
+    }
+
+    .miniatura {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      border: 2.5px solid transparent;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+
+    .miniatura:hover, .miniatura:focus {
+      border-color: #f8bbd0;
+      transform: scale(1.1);
+      outline: none;
+    }
+
+    .miniatura.selecionada {
+      border-color: #c2185b;
+      box-shadow: 0 0 12px #c2185baa;
+      transform: scale(1.1);
     }
 
     /* Emoji rain */
@@ -87,6 +147,7 @@
       position: absolute;
       font-size: 2rem;
       animation: fall linear infinite;
+      user-select: none;
     }
     @keyframes fall {
       to {
@@ -94,12 +155,74 @@
         opacity: 0;
       }
     }
+
+    /* Vídeo */
+    .video-container {
+      margin-top: 2rem;
+      max-width: 90vw;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fce4ec;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(194, 18, 91, 0.3);
+      padding: 10px;
+      user-select: none;
+    }
+    video {
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    video.visible {
+      opacity: 1;
+    }
+
+    /* Botão play/pause para vídeo */
+    #btnVideoPlayPause {
+      margin-top: 0.5rem;
+      background: #fce4ec;
+      border: 1.5px solid #f8bbd0;
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 1rem;
+      color: #c2185b;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(173, 20, 87, 0.25);
+      transition: background-color 0.3s, box-shadow 0.3s;
+      user-select: none;
+    }
+    #btnVideoPlayPause:hover, #btnVideoPlayPause:focus {
+      background: #f8bbd0;
+      box-shadow: 0 4px 10px rgba(136, 14, 79, 0.4);
+      outline: none;
+    }
+
+    /* Responsivo */
+    @media (max-width: 480px) {
+      .galeria {
+        gap: 10px;
+      }
+      #fotoAtual {
+        max-width: 90vw;
+      }
+      .miniatura {
+        width: 50px;
+        height: 50px;
+      }
+      .video-container {
+        max-width: 100vw;
+        padding: 5px;
+      }
+    }
   </style>
 </head>
 <body>
   <header>Para Cailane de Faria 💍</header>
 
-  <div class="mensagem">
+  <div class="mensagem" role="main">
     <p>Não sou muito bom com palavras e eu sei disso, mas gosto de dizer que nesse 8 meses de namoro, nesse nosso primeiro Dia dos Namorados, ao ver tantas memórias vejo que estou com alguém que amo, que quero compartilhar minha vida. Eu te amo muito, Cailane, você é tudo pra mim hoje. Você se tornou a pessoa mais importante da minha vida.</p>
     <p>Que essas fotos te façam lembrar sempre dos nossos momentos como namorados. Mas agora estamos em uma nova etapa: <strong>noivos!!!</strong> Mal posso esperar pelo dia que você olhar para mim e me aceitar como marido na sua vida.</p>
     <p>Muito obrigado pelos 8 meses incríveis com você, e que nosso amor dure a vida toda, até nossas mortes e além dela. ❤️</p>
@@ -110,82 +233,140 @@
     Seu navegador não suporta áudio embutido.
   </audio>
 
-  <div class="galeria">
-    <button onclick="voltarFoto()" aria-label="Foto anterior" class="btn-seta">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" >
-        <polyline points="15 18 9 12 15 6"></polyline>
+  <div class="galeria" aria-label="Galeria de fotos">
+    <button onclick="voltarFoto()" aria-label="Foto anterior" class="btn-seta" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left">
+        <polyline points="15 18 9 12 15 6" />
       </svg>
     </button>
 
-    <img id="fotoAtual" src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO0002.jpeg" alt="Foto do álbum" />
+    <img id="fotoAtual" src="" alt="Foto do casal" tabindex="0" />
 
-    <button onclick="proximaFoto()" aria-label="Próxima foto" class="btn-seta">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" >
-        <polyline points="9 18 15 12 9 6"></polyline>
+    <button onclick="avancarFoto()" aria-label="Próxima foto" class="btn-seta" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="#ad1457" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6" />
       </svg>
     </button>
   </div>
+  <div id="legendaFoto" aria-live="polite"></div>
 
-  <video controls width="640" height="360" style="margin-top:2rem; border-radius:12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/video.mp4" type="video/mp4" />
-    Seu navegador não suporta vídeo.
-  </video>
+  <div class="miniaturas" role="list" aria-label="Miniaturas das fotos">
+    <!-- Miniaturas serão criadas via JS -->
+  </div>
 
-  <div class="emoji-rain" id="emojiRain"></div>
+  <div class="video-container" aria-label="Vídeo especial">
+    <video id="videoEspecial" controls muted>
+      <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/video.mp4" type="video/mp4" />
+      Seu navegador não suporta vídeo.
+    </video>
+    <button id="btnVideoPlayPause" type="button" aria-pressed="false">▶️ Reproduzir</button>
+  </div>
 
   <script>
-    // Emoji rain
-    const emojis = ["💖", "💍", "💕", "🥰", "🌹"];
-    function soltarEmojis() {
-      const emoji = document.createElement("div");
-      emoji.className = "emoji";
-      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDuration = 2 + Math.random() * 3 + "s";
-      document.getElementById("emojiRain").appendChild(emoji);
-      setTimeout(() => emoji.remove(), 5000);
-    }
-    setInterval(soltarEmojis, 300);
-
-    // Fotos
+    // Fotos e legendas
     const fotos = [
-      "FOTO0002.jpeg", "FOTO002.jpeg", "FOTO02.jpeg", "FOTO2.jpeg", "FOTO003.jpeg", "FOTO3.jpeg",
-      "FOTO004.jpeg", "FOTO04.jpeg", "FOTO4.jpeg", "FOTO6.jpeg", "FOTO7.jpeg", "FOTO8.jpeg",
-      "FOTO9.jpeg", "FOTO10.jpeg", "FOTO11.jpeg", "FOTO12.jpeg", "FOTO13.jpeg", "FOTO14.jpeg",
-      "FOTO15.jpeg", "FOTO16.jpeg", "FOTO17.jpeg", "FOTO18.jpeg", "FOTO19.jpeg", "FOTO20.jpeg",
-      "FOTO21.jpeg", "FOTO22.jpeg"
+      { src: "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/foto1.jpg", legenda: "Nossa primeira foto juntos ❤️" },
+      { src: "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/foto2.jpg", legenda: "Dia especial no parque 🌳" },
+      { src: "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/foto3.jpg", legenda: "Viagem inesquecível ✈️" },
+      { src: "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/foto4.jpg", legenda: "Noite de cinema em casa 🍿" },
+      { src: "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/foto5.jpg", legenda: "Você linda como sempre 😍" }
     ];
-    const baseURL = "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/";
-    let index = 0;
-    const img = document.getElementById("fotoAtual");
 
-    function mostrarFoto(i) {
-      img.style.opacity = 0;
+    let indiceAtual = 0;
+
+    const fotoAtual = document.getElementById('fotoAtual');
+    const legendaFoto = document.getElementById('legendaFoto');
+    const miniaturasContainer = document.querySelector('.miniaturas');
+
+    // Função para trocar foto com transição suave
+    function trocarFoto(novoIndice) {
+      if (novoIndice === indiceAtual) return;
+
+      const foto = fotos[novoIndice];
+      if (!foto) return;
+
+      // Animação de saída
+      fotoAtual.classList.add('escondido');
+
       setTimeout(() => {
-        img.src = baseURL + fotos[i];
-        img.style.opacity = 1;
-      }, 500);
+        fotoAtual.src = foto.src;
+        fotoAtual.alt = foto.legenda;
+        legendaFoto.textContent = foto.legenda;
+
+        // Atualiza destaque das miniaturas
+        document.querySelectorAll('.miniatura').forEach((mini, idx) => {
+          mini.classList.toggle('selecionada', idx === novoIndice);
+        });
+
+        // Animação de entrada
+        fotoAtual.classList.remove('escondido');
+
+        indiceAtual = novoIndice;
+      }, 600);
     }
 
-    function proximaFoto() {
-      index = (index + 1) % fotos.length;
-      mostrarFoto(index);
+    // Funções para botões setas
+    function avancarFoto() {
+      let novoIndice = (indiceAtual + 1) % fotos.length;
+      trocarFoto(novoIndice);
     }
 
     function voltarFoto() {
-      index = (index - 1 + fotos.length) % fotos.length;
-      mostrarFoto(index);
+      let novoIndice = (indiceAtual - 1 + fotos.length) % fotos.length;
+      trocarFoto(novoIndice);
     }
 
-    // Troca automática a cada 3 segundos
-    setInterval(proximaFoto, 3000);
+    // Cria miniaturas clicáveis
+    fotos.forEach((foto, i) => {
+      const img = document.createElement('img');
+      img.src = foto.src;
+      img.alt = foto.legenda;
+      img.classList.add('miniatura');
+      img.setAttribute('role', 'listitem');
+      img.tabIndex = 0;
 
-    // Para garantir autoplay do áudio
-    const musica = document.getElementById('musica');
-    musica.volume = 0.3; // volume suave
-    musica.play().catch(() => {
-      // Caso o autoplay seja bloqueado, avisa o usuário ou permite tocar manualmente
-      console.log("Clique para ativar o som.");
+      img.addEventListener('click', () => trocarFoto(i));
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          trocarFoto(i);
+        }
+      });
+
+      miniaturasContainer.appendChild(img);
+    });
+
+    // Inicializa a foto e legenda
+    window.addEventListener('load', () => {
+      trocarFoto(indiceAtual);
+    });
+
+    // Vídeo com botão play/pause customizado
+    const video = document.getElementById('videoEspecial');
+    const btnVideo = document.getElementById('btnVideoPlayPause');
+
+    btnVideo.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        btnVideo.textContent = '⏸️ Pausar';
+        btnVideo.setAttribute('aria-pressed', 'true');
+      } else {
+        video.pause();
+        btnVideo.textContent = '▶️ Reproduzir';
+        btnVideo.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    video.addEventListener('play', () => {
+      video.classList.add('visible');
+      btnVideo.textContent = '⏸️ Pausar';
+      btnVideo.setAttribute('aria-pressed', 'true');
+    });
+
+    video.addEventListener('pause', () => {
+      video.classList.remove('visible');
+      btnVideo.textContent = '▶️ Reproduzir';
+      btnVideo.setAttribute('aria-pressed', 'false');
     });
   </script>
 </body>
