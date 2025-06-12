@@ -81,37 +81,11 @@
   Seu navegador não suporta áudio embutido.
 </audio>
 
-  <div class="galeria">
-    <!-- Coloque aqui as imagens da pasta 'fotos/' -->
-    <!-- Exemplo: -->
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO0002.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO002.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO02.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO2.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO003.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO3.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO004.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO04.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO4.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO6.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO7.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO8.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO9.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO10.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO11.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO12.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO13.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO14.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO15.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO16.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO17.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO18.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO19.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO20.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO21.jpeg">
-<img src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO22.jpeg">
-    <!-- ...adicione todas as outras aqui... -->
-  </div>
+ <div class="galeria" id="galeria">
+  <button onclick="voltarFoto()">⬅️</button>
+  <img id="fotoAtual" src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/FOTO0002.jpeg">
+  <button onclick="proximaFoto()">➡️</button>
+</div>
 
   <video controls width="640" height="360">
   <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/video.mp4" type="video/mp4">
@@ -132,6 +106,34 @@
       setTimeout(() => emoji.remove(), 5000);
     }
     setInterval(soltarEmojis, 300);
-  </script>
+  <script>
+  const fotos = [
+    "FOTO0002.jpeg", "FOTO002.jpeg", "FOTO02.jpeg", "FOTO2.jpeg", "FOTO003.jpeg", "FOTO3.jpeg",
+    "FOTO004.jpeg", "FOTO04.jpeg", "FOTO4.jpeg", "FOTO6.jpeg", "FOTO7.jpeg", "FOTO8.jpeg",
+    "FOTO9.jpeg", "FOTO10.jpeg", "FOTO11.jpeg", "FOTO12.jpeg", "FOTO13.jpeg", "FOTO14.jpeg",
+    "FOTO15.jpeg", "FOTO16.jpeg", "FOTO17.jpeg", "FOTO18.jpeg", "FOTO19.jpeg", "FOTO20.jpeg",
+    "FOTO21.jpeg", "FOTO22.jpeg"
+  ];
+  const baseURL = "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/";
+  let index = 0;
+  const img = document.getElementById("fotoAtual");
+
+  function mostrarFoto(i) {
+    img.src = baseURL + fotos[i];
+  }
+
+  function proximaFoto() {
+    index = (index + 1) % fotos.length;
+    mostrarFoto(index);
+  }
+
+  function voltarFoto() {
+    index = (index - 1 + fotos.length) % fotos.length;
+    mostrarFoto(index);
+  }
+
+  // troca automática a cada 3 segundos
+  setInterval(proximaFoto, 3000);
+</script>
 </body>
 </html>
