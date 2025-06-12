@@ -95,18 +95,20 @@
   <div class="emoji-rain" id="emojiRain"></div>
 
   <script>
-    const emojis = ["💖", "💍", "💕", "🥰", "🌹"];
-    function soltarEmojis() {
-      const emoji = document.createElement("div");
-      emoji.className = "emoji";
-      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-      emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDuration = 2 + Math.random() * 3 + "s";
-      document.getElementById("emojiRain").appendChild(emoji);
-      setTimeout(() => emoji.remove(), 5000);
-    }
-    setInterval(soltarEmojis, 300);
-  <script>
+  const emojis = ["💖", "💍", "💕", "🥰", "🌹"];
+  function soltarEmojis() {
+    const emoji = document.createElement("div");
+    emoji.className = "emoji";
+    emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.left = Math.random() * 100 + "vw";
+    emoji.style.animationDuration = 2 + Math.random() * 3 + "s";
+    document.getElementById("emojiRain").appendChild(emoji);
+    setTimeout(() => emoji.remove(), 5000);
+  }
+  setInterval(soltarEmojis, 300);
+</script> <!-- ✅ FECHANDO O SCRIPT AQUI -->
+
+<script>
   const fotos = [
     "FOTO0002.jpeg", "FOTO002.jpeg", "FOTO02.jpeg", "FOTO2.jpeg", "FOTO003.jpeg", "FOTO3.jpeg",
     "FOTO004.jpeg", "FOTO04.jpeg", "FOTO4.jpeg", "FOTO6.jpeg", "FOTO7.jpeg", "FOTO8.jpeg",
@@ -114,6 +116,7 @@
     "FOTO15.jpeg", "FOTO16.jpeg", "FOTO17.jpeg", "FOTO18.jpeg", "FOTO19.jpeg", "FOTO20.jpeg",
     "FOTO21.jpeg", "FOTO22.jpeg"
   ];
+
   const baseURL = "https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/fotos/";
   let index = 0;
   const img = document.getElementById("fotoAtual");
