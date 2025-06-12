@@ -89,11 +89,16 @@
       transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
       padding: 0;
       user-select: none;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: #ad1457;
+      user-select: none;
     }
     .btn-seta:hover {
       background: #f8bbd0;
       box-shadow: 0 6px 14px rgba(136, 14, 79, 0.4);
       transform: scale(1.1);
+      color: #880e4f;
     }
     .btn-seta svg {
       stroke: #ad1457;
@@ -196,6 +201,7 @@
       .btn-seta {
         width: 40px;
         height: 40px;
+        font-size: 1.2rem;
       }
       .btn-seta svg {
         width: 20px;
@@ -213,10 +219,15 @@
     <p>Muito obrigado pelos 8 meses incríveis com você, e que nosso amor dure a vida toda, até nossas mortes e além dela. ❤️</p>
   </div>
 
-  <audio id="musica" autoplay loop>
+  <audio id="musica" loop>
     <source src="https://raw.githubusercontent.com/GustavoMimoso/Presente-Cailane/main/ordinary.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio embutido.
   </audio>
+
+  <!-- Botão para tocar/pausar a música -->
+  <button id="btnMusica" aria-label="Tocar música" class="btn-seta" type="button" style="margin: 1rem auto;">
+    ▶️
+  </button>
 
   <div class="galeria" aria-label="Galeria de fotos">
     <button onclick="voltarFoto()" aria-label="Foto anterior" class="btn-seta" type="button">
