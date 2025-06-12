@@ -311,6 +311,9 @@
     document.getElementById("btnProximo").onclick = proximaFoto;
     mostrarFoto(fotoAtualIndex);
 
+    // ---- NOVO: Carrossel automático ----
+    setInterval(proximaFoto, 3000);
+
     // Botão de música (play/pause)
     const btnMusica = document.getElementById('btnMusica');
     const musica = document.getElementById('musica');
